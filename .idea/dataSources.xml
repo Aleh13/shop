@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="rails_course_development_copy@localhost" uuid="f383af87-a76a-4b49-a0ae-8ae4abdb3cc6">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/rails_course_development_copy</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="rails_course_test_copy@localhost" uuid="e2b29e1a-9f25-4ee5-ad07-b9f6df366079">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/rails_course_test_copy</jdbc-url>
+    </data-source>
+  </component>
+</project>
