@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.boolean :real
       t.float   :weight
       t.string  :description
+      t.integer :votes_count, default: 0
       t.timestamps
     end
 
