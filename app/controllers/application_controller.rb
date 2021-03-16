@@ -7,3 +7,8 @@ class ApplicationController < ActionController::Base
     render file: 'public/404.html', status: :not_found
   end
 end
+
+def admin?
+  #true
+  render_403 unless params[:admin]
+end

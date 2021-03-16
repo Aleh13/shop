@@ -7,10 +7,13 @@
     <%= label_tag :price %>
     <%= text_field_tag :price, @item.price %>
     <%= label_tag :description %>
-    <%= text_field_tag :description %>
+    <%= text_field_tag :description, @item.description %>
     <%= submit_tag "Update", class: "btn btn-large btn-primary" %>
 
 <% end %>
+<br/>
+
+<%= button_to "index", items_path,  method: :get %>
 
   <%= render partial: 'shared/email' %>
 

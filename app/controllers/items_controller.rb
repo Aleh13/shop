@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  layout false
+
   skip_before_action :verify_authenticity_token
   before_action :find_item, only: %i[show edit update destroy upvote]
   before_action :admin?, only: %i[edit]
@@ -18,19 +18,29 @@ class ItemsController < ApplicationController
 
 
   def index
-    @items = Item.all
+    @items = Item
+    @items = @items.where('price >= ?', params[:price_from]) if params[:price_from]
+    @items = @items.where('created_at >= ?', 1.day.ago) if params[:today]
+    @items = @items.where('votes_count >= ?', params[:votes_from]) if params[:votes_from]
+    @items = @items.order(:id)
+    @items = @items.includes(:image)
   end
 
   def create
-    item = Item.create (items_params)
-    if item.persisted?
+    @item = Item.create (items_params)
+    if @item.persisted?
+      flash[:success] = 'Item was saved'
       redirect_to items_path
     else
-      render json: item.errors, status: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly "
+      render :new
+      #render json: item.errors, status: :unprocessable_entity
     end
   end
 
-  #def new; end
+  def new
+    @item = Item.new
+  end
 
   #def show; end
 
@@ -39,27 +49,33 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(items_params)
-    redirect_to item_path
+      flash[:success] = 'Item was updatet'
+      redirect_to item_path
     else
-      render json: item.errors, status: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly"
+      #render json: item.errors, status: :unprocessable_entity
     end
   end
 
 
 
+
   def destroy
     if @item.destroy.destroyed?
+      flash[:success] = 'Item was delited'
       redirect_to items_path
     else
-      render json: item.errors, status: :unprocessable_entity
+      flash.now[:error] = "Item wasn't delited"
+      #render json: item.errors, status: :unprocessable_entity
     end
 
   end
 
 
   private
+
   def items_params
-    params.permit(:name, :price, :real, :weight, :description)
+    params.require(:item).permit(:name, :price, :real, :weight, :description)
   end
 
   def find_item
@@ -67,10 +83,6 @@ class ItemsController < ApplicationController
     render_404 unless @item
   end
 
-  def admin?
-    true
-    #render_403 unless params[:admin]
-  end
 
   def show_info
     puts 'Index endpoint'
