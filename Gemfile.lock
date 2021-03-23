@@ -80,6 +80,8 @@ GEM
     diff-lcs (1.4.4)
     erubi (1.10.0)
     erubis (2.7.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
     ffi (1.13.1)
     ffi (1.13.1-java)
     ffi (1.13.1-x64-mingw32)
@@ -282,6 +284,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  factory_bot
   haml-rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
