@@ -10,11 +10,13 @@
   </head>
 
   <body>
+  <div class="jumbotron vertical-center">
+    <div class="container">
   <h2 style="color: #730E15">Admin panel</h2>
     <%= yield %>
+      <%= render partial: 'shared/email' %>
+    </div>
+  </div>
   </body>
 
-  <footer>
-  <p>По всем вопросам пишите на почту q4wk13@gmail.com</p>
-  <footer/>
 </html>
